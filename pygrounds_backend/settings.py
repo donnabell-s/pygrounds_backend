@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     'analytics',
     'adminpanel',
     'initializer',
+    'proficiency',
+    'achievements'
 ]
 
 MIDDLEWARE = [
