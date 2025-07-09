@@ -83,7 +83,7 @@ SIMPLE_JWT = {
 
 CORS_ALLOW_ALL_ORIGINS = True 
 
-# AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = 'users.User'
 
 
 ROOT_URLCONF = 'pygrounds_backend.urls'
@@ -113,10 +113,10 @@ WSGI_APPLICATION = 'pygrounds_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv('pygrounds'),
-        'USER': os.getenv('root'),
-        'PASSWORD': os.getenv('root'),
-        'HOST': 'db',  # Docker service name
+        'NAME': 'pygrounds',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': 'localhost',
         'PORT': '3306',
     }
 }
