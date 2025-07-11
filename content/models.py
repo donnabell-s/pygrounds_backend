@@ -1,14 +1,17 @@
 from django.db import models
 
+from django.db import models
+
 class LevelZone(models.Model):
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100)  # e.g., "Zone 1: Python Basics"
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
 class Topic(models.Model):
-    level = models.ForeignKey(LevelZone, on_delete=models.CASCADE)
+    zone = models.ForeignKey(LevelZone, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     description = models.TextField()
+    tags = models.CharField(max_length=255, blank=True)
 
 class ReadingContent(models.Model):
     level = models.ForeignKey(LevelZone, on_delete=models.CASCADE)
