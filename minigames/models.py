@@ -3,11 +3,20 @@ from users.models import StudentProfile
 from content.models import LevelZone
 from questions.models import Question
 
+from django.db import models
+
 class Minigame(models.Model):
     name = models.CharField(max_length=100)
+
+    short_description = models.CharField(max_length=255, blank=True, null=True)  
     type = models.CharField(max_length=50)
-    instructions = models.TextField()
+    instructions = models.JSONField(default=list, blank=True)
+    tips = models.JSONField(default=list, blank=True)
     is_initial = models.BooleanField(default=False)
+    challenges = models.IntegerField(default=1, null=True, blank=True)
+    lives = models.IntegerField(default=1, null=True, blank=True)
+    time_limit_seconds = models.IntegerField(null=True, blank=True, help_text="Seconds (null = no time limit)")
+
 
 class Assessment(models.Model):
     student = models.ForeignKey(StudentProfile, on_delete=models.CASCADE)
