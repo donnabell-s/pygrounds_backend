@@ -10,6 +10,11 @@ class Topic(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
 
+class Subtopic(models.Model):
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE, related_name="subtopics")
+    name = models.CharField(max_length=100)
+    description = models.TextField(blank=True)
+
 class ReadingContent(models.Model):
     level = models.ForeignKey(LevelZone, on_delete=models.CASCADE)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
@@ -21,6 +26,7 @@ class PDF(models.Model):
     uploaded_by = models.ForeignKey('users.AdminProfile', on_delete=models.SET_NULL, null=True)
     level = models.ForeignKey(LevelZone, on_delete=models.SET_NULL, null=True)
     topic = models.ForeignKey(Topic, on_delete=models.SET_NULL, null=True)
+    subtopic = models.ForeignKey(Subtopic, on_delete=models.SET_NULL, null=True), 
     title = models.CharField(max_length=200)
     file_path = models.TextField()
     status = models.CharField(max_length=50)
